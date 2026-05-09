@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>স্মাইল ডেন্টাল কেয়ার - ঢাকার বিশ্বস্ত দাঁতের ক্লিনিক</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1a4fa0;
+    --blue-dark: #0f3478;
+    --blue-light: #2a6dd9;
+    --green: #28a745;
+    --green-dark: #1e7e34;
+    --yellow: #ffc107;
+    --red: #dc3545;
+    --text: #222;
+    --text-light: #666;
+    --bg: #f8faff;
+    --white: #fff;
+    --border: #e2e8f0;
+    --shadow: 0 4px 20px rgba(26,79,160,0.10);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans Bengali',sans-serif; color:var(--text); background:var(--white); }
+
+  /* TOP BAR */
+  .topbar {
+    background:var(--blue-dark);
+    color:#9bc3ff;
+    font-size:0.75rem;
+    padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .topbar .container { display:flex; justify-content:space-between; align-items:center; }
+  .topbar span { display:flex; align-items:center; gap:6px; }
+
+  /* NAVBAR */
+  nav {
+    background:var(--white);
+    border-bottom:2px solid var(--border);
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+  }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:20px; }
+  .logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-icon { width:42px; height:42px; background:var(--blue); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:24px; color:white; }
+  .logo-text .name { font-size:1.05rem; font-weight:800; color:var(--blue); line-height:1.1; }
+  .logo-text .tagline { font-size:0.7rem; color:var(--text-light); }
+  .nav-links { display:flex; gap:20px; list-style:none; }
+  .nav-links a { text-decoration:none; color:var(--text); font-size:0.85rem; font-weight:500;
+    transition:color .2s; border-bottom:2px solid transparent; }
+  .nav-links a:hover { color:var(--blue); border-bottom-color:var(--blue); }
+  .nav-ctas { display:flex; gap:10px; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 16px;
+    border-radius:6px; font-size:0.85rem; font-weight:700; cursor:pointer;
+    text-decoration:none; border:none; transition:all .2s; font-family:inherit; }
+  .btn-blue { background:var(--blue); color:white; }
+  .btn-blue:hover { background:var(--blue-dark); transform:translateY(-1px); }
+  .btn-green { background:var(--green); color:white; }
+  .btn-green:hover { background:var(--green-dark); transform:translateY(-1px); }
+  .btn-lg { padding:12px 28px; font-size:1rem; border-radius:8px; }
+  .btn-sm { padding:7px 14px; font-size:0.8rem; }
+
+  .container { max-width:1160px; margin:0 auto; padding:0 20px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #eef4ff 0%, #f0f8ff 60%, #e8f5e9 100%);
+    padding:50px 0 40px; position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; right:-100px; top:-100px;
+    width:450px; height:450px;
+    background:radial-gradient(circle, rgba(26,79,160,0.08) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .hero-sub { font-size:0.95rem; color:var(--text-light); margin-bottom:8px; font-weight:500; }
+  .hero h1 { font-size:3rem; font-weight:800; color:var(--blue); line-height:1.1; margin-bottom:12px; }
+  .hero-tagline { font-size:0.9rem; color:var(--text-light); margin-bottom:16px; font-weight:500; }
+  .hero-checks { list-style:none; margin-bottom:24px; display:flex; flex-direction:column; gap:8px; }
+  .hero-checks li { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:var(--text); font-weight:500; }
+  .check-icon { width:20px; height:20px; background:var(--green); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:white; font-size:12px; flex-shrink:0; }
+  .hero-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+  .hero-hours { font-size:0.8rem; color:var(--text-light); display:flex; align-items:center; gap:6px; }
+  .hero-image { border-radius:14px; overflow:hidden; box-shadow:0 8px 40px rgba(26,79,160,0.18); position:relative; }
+  .hero-image img { width:100%; height:auto; display:block; border-radius:14px; }
+
+  /* TRUST BADGES */
+  .trust-badges {
+    background:white; box-shadow:0 2px 20px rgba(0,0,0,0.08);
+    padding:28px 0; border-bottom:3px solid var(--blue);
+  }
+  .badges-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+  .badge { display:flex; align-items:flex-start; gap:16px; padding:0 20px;
+    border-right:1px solid var(--border); }
+  .badge:last-child { border-right:none; }
+  .badge-icon { width:50px; height:50px; border-radius:12px; background:var(--blue);
+    display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; color:white; }
+  .badge-title { font-weight:800; font-size:0.95rem; color:var(--blue); margin-bottom:4px; }
+  .badge-desc { font-size:0.8rem; color:var(--text-light); line-height:1.5; }
+
+  /* SECTION */
+  section { padding:60px 0; }
+  .section-title { font-size:1.8rem; font-weight:800; color:var(--blue); margin-bottom:10px; }
+  .section-sub { font-size:0.88rem; color:var(--text-light); margin-bottom:32px; }
+  .section-label { font-size:0.75rem; font-weight:700; color:var(--green); text-transform:uppercase;
+    letter-spacing:1.2px; margin-bottom:8px; }
+
+  /* DOCTOR */
+  .doctor-section { background:var(--bg); }
+  .doctor-grid { display:grid; grid-template-columns:1fr 1.7fr; gap:40px; align-items:start; }
+  .doctor-card { background:white; border-radius:16px; padding:28px; box-shadow:var(--shadow);
+    border:1px solid var(--border); text-align:center; }
+  .doctor-photo { width:140px; height:140px; border-radius:50%;
+    margin:0 auto 16px; display:flex; align-items:center; justify-content:center;
+    overflow:hidden; border:4px solid white; box-shadow:0 4px 20px rgba(26,79,160,0.15); }
+  .doctor-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .doctor-name { font-size:1.3rem; font-weight:800; color:var(--blue); margin-bottom:4px; }
+  .doctor-deg { font-size:0.82rem; color:var(--green); font-weight:700; margin-bottom:4px; }
+  .doctor-title { font-size:0.9rem; color:var(--text-light); margin-bottom:14px; }
+  .doctor-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+  .stat-box { text-align:center; background:var(--bg); border-radius:10px; padding:12px;
+    border:1px solid var(--border); }
+  .stat-num { font-size:1.4rem; font-weight:800; color:var(--blue); }
+  .stat-label { font-size:0.72rem; color:var(--text-light); margin-top:2px; }
+  .doctor-desc { font-size:0.83rem; color:var(--text-light); line-height:1.7; }
+
+  .clinic-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .clinic-card { border-radius:12px; overflow:hidden; background:white;
+    border:1px solid var(--border); box-shadow:var(--shadow); }
+  .clinic-img { aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; }
+  .clinic-img img { width: 100%; height: 100%; object-fit: cover; }
+  .clinic-info { padding:12px; }
+  .clinic-name { font-size:0.9rem; font-weight:700; color:var(--blue); margin-bottom:4px; }
+  .clinic-desc { font-size:0.78rem; color:var(--text-light); line-height:1.5; }
+
+  .google-badge { background:white; border:1px solid var(--border); border-radius:12px;
+    padding:16px; display:flex; align-items:center; gap:14px; margin-top:16px;
+    box-shadow:var(--shadow); }
+  .google-logo { font-weight:900; font-size:1.6rem; }
+  .google-stars { color:var(--yellow); font-size:1.2rem; }
+  .google-count { font-size:0.75rem; color:var(--text-light); }
+  .google-score { font-size:1.1rem; font-weight:800; color:var(--text); }
+
+  /* SERVICES */
+  .services-section { background:white; }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .service-card {
+    border-radius:14px; border:1px solid var(--border);
+    padding:20px; background:white; box-shadow:var(--shadow);
+    transition:all .25s; cursor:pointer; text-align:center;
+  }
+  .service-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(26,79,160,0.18);
+    border-color:var(--blue); }
+  .service-img { width:100%; aspect-ratio:4/3; border-radius:10px;
+    background:linear-gradient(135deg, #eef4ff, #c8d8f5);
+    margin-bottom:14px; display:flex; align-items:center; justify-content:center; font-size:48px;
+    overflow:hidden; }
+  .service-img img { width:100%; height:100%; object-fit:cover; border-radius:10px; }
+  .service-badge { display:inline-block; padding:4px 12px; border-radius:20px;
+    font-size:0.72rem; font-weight:700; margin-bottom:10px; }
+  .badge-red { background:#fff0f0; color:#d00; }
+  .badge-orange { background:#fff5e6; color:#e67e00; }
+  .badge-blue { background:#eef4ff; color:var(--blue); }
+  .badge-teal { background:#e6fdf5; color:#00875a; }
+  .badge-purple { background:#f5eeff; color:#7c3aed; }
+  .badge-pink { background:#fff0f8; color:#c2185b; }
+  .service-name { font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .service-desc { font-size:0.8rem; color:var(--text-light); line-height:1.6; }
+
+  /* PRICING */
+  .pricing-section { background:var(--bg); }
+  .price-note { background:#fff9e6; border:1px solid #f0d060; border-radius:8px;
+    padding:14px 18px; display:flex; align-items:flex-start; gap:10px;
+    margin-top:20px; font-size:0.83rem; color:#856404; }
+  table { width:100%; border-collapse:collapse; background:white; border-radius:14px;
+    overflow:hidden; box-shadow:var(--shadow); }
+  th { background:var(--blue); color:white; padding:14px 16px; text-align:left; font-size:0.9rem; }
+  td { padding:12px 16px; font-size:0.85rem; border-bottom:1px solid var(--border); }
+  tr:last-child td { border-bottom:none; }
+  tr:nth-child(even) td { background:#f8faff; }
+  .price-range { font-weight:700; color:var(--blue); }
+  .free-tag { color:var(--green); font-weight:700; }
+
+  /* BEFORE AFTER */
+  .results-section { background:white; }
+  .ba-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .ba-card { border-radius:14px; overflow:hidden; border:1px solid var(--border);
+    box-shadow:var(--shadow); }
+  .ba-images { display:grid; grid-template-columns:1fr 1fr; }
+  .ba-img { aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:6px; position:relative; }
+  .ba-img img { width: 100%; height: 100%; object-fit: cover; }
+  .ba-label { font-size:0.65rem; font-weight:700; padding:3px 8px; border-radius:4px;
+    position:absolute; bottom:8px; z-index: 2; }
+  .label-before { background:#d00; color:white; }
+  .label-after { background:var(--green); color:white; }
+  .ba-info { padding:16px; }
+  .ba-title { font-size:0.95rem; font-weight:700; color:var(--blue); margin-bottom:6px; }
+  .ba-desc { font-size:0.78rem; color:var(--text-light); line-height:1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background:var(--bg); }
+  .testimonials-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .testimonial-card { background:white; border-radius:14px; padding:18px;
+    border:1px solid var(--border); box-shadow:var(--shadow); }
+  .stars { color:var(--yellow); font-size:1.1rem; margin-bottom:10px; }
+  .testimonial-text { font-size:0.8rem; color:var(--text-light); line-height:1.7; margin-bottom:12px; }
+  .testimonial-author { display:flex; align-items:center; gap:10px; }
+  .author-avatar { width:40px; height:40px; border-radius:50%;
+    background:linear-gradient(135deg, var(--blue), var(--blue-light));
+    display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:14px;
+    flex-shrink:0; }
+  .author-name { font-size:0.83rem; font-weight:700; color:var(--text); }
+  .author-loc { font-size:0.72rem; color:var(--text-light); }
+
+  /* FINAL CTA */
+  .final-cta {
+    background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-light) 100%);
+    padding:60px 0; color:white; position:relative; overflow:hidden;
+  }
+  .final-cta::before {
+    content:''; position:absolute; right:-100px; bottom:-100px;
+    width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+  .final-cta-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center; }
+  .final-cta-content h2 { font-size:2rem; font-weight:800; margin-bottom:12px; }
+  .final-cta-content p { font-size:0.95rem; opacity:0.9; margin-bottom:24px; line-height:1.7; }
+  .cta-btns { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:20px; }
+  .cta-btns .btn { flex:1; min-width:200px; text-align:center; line-height:1.4; }
+  .btn-white { background:white; color:var(--blue); font-weight:700; border:2px solid white; }
+  .btn-white:hover { background:#f0f4ff; }
+  .cta-checks { display:flex; gap:18px; flex-wrap:wrap; }
+  .cta-check { display:flex; align-items:center; gap:6px; font-size:0.82rem; opacity:0.95; }
+  .final-cta-img { border-radius:14px; overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,0.3); }
+  .final-cta-img img { width:100%; height:auto; display:block; }
+
+  /* FOOTER */
+  footer { background:var(--blue-dark); color:#9bc3ff; padding:50px 0 20px; }
+  .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1.5fr 1.2fr 1fr; gap:30px; margin-bottom:30px; }
+  .footer-brand .name { font-size:1.05rem; font-weight:800; color:white; margin-bottom:4px; }
+  .footer-brand .tagline { font-size:0.75rem; margin-bottom:10px; }
+  .footer-brand p { font-size:0.78rem; line-height:1.7; }
+  .footer-section h4 { color:white; font-size:0.88rem; font-weight:700; margin-bottom:14px;
+    padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.15); }
+  .footer-links { list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .footer-links a { color:#9bc3ff; text-decoration:none; font-size:0.78rem; transition:color .2s; }
+  .footer-links a:hover { color:white; }
+  .footer-contact { display:flex; flex-direction:column; gap:8px; }
+  .footer-contact-item { display:flex; align-items:flex-start; gap:8px; font-size:0.78rem; color:#9bc3ff; }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:20px; display:flex; justify-content:space-between;
+    align-items:center; font-size:0.75rem; flex-wrap:wrap; gap:10px; }
+  .social-links { display:flex; gap:10px; }
+  .social-link { width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.1);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+    text-decoration:none; color:white; transition:background .2s; }
+  .social-link:hover { background:rgba(255,255,255,0.25); }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .hero-content { animation:fadeUp .6s ease both; }
+  .hero-image { animation:fadeUp .6s ease .15s both; }
+
+  @media(max-width:900px) {
+    .hero-grid, .doctor-grid, .final-cta-grid { grid-template-columns:1fr; }
+    .services-grid { grid-template-columns:repeat(2,1fr); }
+    .testimonials-grid { grid-template-columns:repeat(2,1fr); }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .ba-grid { grid-template-columns:1fr; }
+    .badges-grid { grid-template-columns:1fr; }
+    .badge:not(:last-child) { border-right:none; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:14px; }
+    nav .nav-links { display:none; }
+    .hero h1 { font-size:2rem; }
+  }
+  @media(max-width:600px) {
+    .services-grid { grid-template-columns:1fr; }
+    .testimonials-grid { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    .clinic-grid { grid-template-columns:1fr; }
+    .hero h1 { font-size:1.8rem; }
+    .section-title { font-size:1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <span>📍 ঢাকা • গাজীপুর • নারায়ণগঞ্জ</span>
+    <span>🕐 সকাল ৯টা – রাত ৯টা &nbsp;•&nbsp; শুক্রবার ও জরুরি সেবা উপলব্ধ</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">🦷</div>
+        <div class="logo-text">
+          <div class="name">স্মাইল ডেন্টাল কেয়ার</div>
+          <div class="tagline">আপনার হাসি, আমাদের দায়িত্ব</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">হোম</a></li>
+        <li><a href="#services">আমাদের সেবা</a></li>
+        <li><a href="#pricing">মূল্য তালিকা</a></li>
+        <li><a href="#results">রোগীর পরিবর্তন</a></li>
+        <li><a href="#reviews">রিভিউ</a></li>
+        <li><a href="#footer">যোগাযোগ</a></li>
+      </ul>
+      <div class="nav-ctas">
+        <a href="tel:01713123456" class="btn btn-blue btn-sm">📞 01713-123456</a>
+        <a href="#" class="btn btn-green btn-sm">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <p class="hero-sub">দাঁতের ব্যথায় আর কষ্ট পাবেন না –</p>
+        <h1>আজই সুস্থ হোন,<br>নিশ্চিত দামে</h1>
+        <p class="hero-tagline">Painless Treatment • পরিষ্কার ক্লিনিক • কোনো লুকানো চার্জ নেই</p>
+        <ul class="hero-checks">
+          <li><span class="check-icon">✓</span> প্রথম পরামর্শ বিনামূল্যে</li>
+          <li><span class="check-icon">✓</span> আধুনিক যন্ত্রপাতি</li>
+          <li><span class="check-icon">✓</span> অভিজ্ঞ ডাক্তার</li>
+        </ul>
+        <div class="hero-btns">
+          <a href="tel:01713123456" class="btn btn-blue btn-lg">📞 এখনই কল করুন</a>
+          <a href="#" class="btn btn-green btn-lg">💬 WhatsApp করুন</a>
+        </div>
+        <p class="hero-hours">🕐 সকাল ৯টা – রাত ৯টা • শুক্রবার ও জরুরি সেবা উপলব্ধ</p>
+      </div>
+      <div class="hero-image">
+        <img src="https://i.imgur.com/eQDHuY0.png" alt="Dental Treatment">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<div class="trust-badges">
+  <div class="container">
+    <div class="badges-grid">
+      <div class="badge">
+        <div class="badge-icon">🦷</div>
+        <div>
+          <div class="badge-title">ব্যাথাহীন চিকিৎসা</div>
+          <div class="badge-desc">আধুনিক Anesthesia ব্যবহার করা হয় — অপারেশনে ব্যথা লাগবে না</div>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="badge-icon">💰</div>
+        <div>
+          <div class="badge-title">পরিষ্কার মূল্য তালিকা</div>
+          <div class="badge-desc">শুরুতেই বলা হবে কত টাকা লাগবে — মাঝপথে কোনো বাড়তি চার্জ নেই</div>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="badge-icon">👨‍⚕️</div>
+        <div>
+          <div class="badge-title">পরিচিত ডাক্তার</div>
+          <div class="badge-desc">প্রতিটি রোগী দেখেন অভিজ্ঞ ডেন্টিস্ট — কোনো জুনিয়র ইন্টার্ন নয়</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCTOR & CLINIC -->
+<section class="doctor-section" id="doctor">
+  <div class="container">
+    <div class="doctor-grid">
+      <div class="doctor-card">
+        <div class="section-label" style="margin-bottom:16px;">ডাক্তার পরিচিতি</div>
+        <div class="doctor-photo">
+            <img src="https://i.imgur.com/ianLThA.png" alt="ডা. রাফিউল আলম">
+        </div>
+        <div class="doctor-name">ডা. রাফিউল আলম</div>
+        <div class="doctor-deg">BDS, FCPS</div>
+        <div class="doctor-title">সিনিয়র ডেন্টাল সার্জন</div>
+        <div class="doctor-stats">
+          <div class="stat-box">
+            <div class="stat-num">১৫+</div>
+            <div class="stat-label">বছরের অভিজ্ঞতা</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">৪,০০০+</div>
+            <div class="stat-label">সফল চিকিৎসা</div>
+          </div>
+        </div>
+        <p class="doctor-desc">ঢাকা ডেন্টাল কলেজ থেকে BDS সম্পন্ন। Root Canal, Implant এবং জটিল Extraction-এ বিশেষ দক্ষতা। ৪,০০০+ রোগীর সফল চিকিৎসা।[cite: 2]</p>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:12px;">আপনার চিকিৎসা করবেন একজন বিশ্বস্ত বিশেষজ্ঞ</div>
+        <h2 class="section-title" style="margin-bottom:20px;">ক্লিনিক ও সুবিধা</h2>
+        <div class="clinic-grid">
+          <div class="clinic-card">
+            <div class="clinic-img">
+                <img src="https://i.imgur.com/bxmFkvq.png" alt="পরিষ্কার ও আধুনিক ক্লিনিক">
+            </div>
+            <div class="clinic-info">
+              <div class="clinic-name">পরিষ্কার ও আধুনিক ক্লিনিক</div>
+              <div class="clinic-desc">প্রতিটি যন্ত্র Sterilize করা হয়। একবার ব্যবহারযোগ্য সিরিঞ্জ, গ্লাভস।</div>
+            </div>
+          </div>
+          <div class="clinic-card">
+            <div class="clinic-img">
+                <img src="https://i.imgur.com/MGWEAy8.png" alt="Digital X-Ray সুবিধা">
+            </div>
+            <div class="clinic-info">
+              <div class="clinic-name">Digital X-Ray সুবিধা</div>
+              <div class="clinic-desc">সাথে সাথে X-Ray রিপোর্ট — রোগ স্পষ্ট বুঝে তারপর চিকিৎসা।</div>
+            </div>
+          </div>
+          <div class="clinic-card">
+            <div class="clinic-img">
+                <img src="https://i.imgur.com/sdvT6Px.png" alt="BDS & BCDS নিবন্ধিত">
+            </div>
+            <div class="clinic-info">
+              <div class="clinic-name">BDS & BCDS নিবন্ধিত</div>
+              <div class="clinic-desc">বাংলাদেশ ডেন্টাল কাউন্সিল অনুমোদিত ক্লিনিক।</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-label">আমাদের সেবাসমূহ</div>
+    <h2 class="section-title">যে সমস্যায় আমরা সাহায্য করি</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-img"><img src="https://res.cloudinary.com/dhz30z6qe/image/upload/Emergency_Tooth_Pain_endyy6" alt="Emergency Tooth Pain"></div>
+        <span class="service-badge badge-red">Emergency</span>
+        <div class="service-name">Emergency / Tooth Pain</div>
+        <div class="service-desc">তীব্র দাঁতের ব্যথা — জরুরি ভিত্তিতে দেখা হয়। একই দিনে চিকিৎসা সম্পন্ন।</div>
+      </div>
+      <div class="service-card">
+        <div class="service-img"><img src="https://res.cloudinary.com/dhz30z6qe/image/upload/Root_Canal_%E0%A6%9A%E0%A6%BF%E0%A6%95%E0%A6%BF%E0%A7%8E%E0%A6%B8%E0%A6%BE_d1cdlt" alt="Root Canal চিকিৎসা"></div>
+        <span class="service-badge badge-orange">Root Canal</span>
+        <div class="service-name">Root Canal চিকিৎসা</div>
+        <div class="service-desc">মাড়ি তুলতে হবে না — ইনফেকশন পরিষ্কার করে দাঁত রাখা হয়। সম্পূর্ণ ব্যথামুক্ত।</div>
+      </div>
+      <div class="service-card">
+        <div class="service-img"><img src="https://res.cloudinary.com/dhz30z6qe/image/upload/%E0%A6%A6%E0%A6%BE%E0%A6%81%E0%A6%A4%E0%A7%87%E0%A6%B0_%E0%A6%AA%E0%A7%8B%E0%A6%95%E0%A6%BE_Filling_h3rxfs" alt="দাঁতের পোকা Filling"></div>
+        <span class="service-badge badge-blue">Filling</span>
+        <div class="service-name">দাঁতের পোকা / Filling</div>
+        <div class="service-desc">পোকা লাগা দাঁতে Tooth-colored Filling — দেখতে স্বাভাবিক, স্থায়ী সমাধান।</div>
+      </div>
+      <div class="service-card">
+        <div class="service-img"><img src="https://res.cloudinary.com/dhz30z6qe/image/upload/Dental_cleaning_close-up_with_scaler_xddv7j" alt="Cleaning / Scaling"></div>
+        <span class="service-badge badge-teal">Cleaning</span>
+        <div class="service-name">Cleaning / Scaling</div>
+        <div class="service-desc">দাঁত পরিষ্কার করা — জমে থাকা পাথর সরানো। Professional Scaling সেবা।</div>
+      </div>
+      <div class="service-card">
+        <div class="service-img"><img src="https://raw.githubusercontent.com/marufhossenofficial/dental/refs/heads/main/ChatGPT%20Image%20May%203%2C%202026%2C%2009_32_41%20AM.png" alt="Dental Implant (স্থায়ী দাঁত)"></div>
+        <span class="service-badge badge-purple">Implant</span>
+        <div class="service-name">Dental Implant (স্থায়ী দাঁত)</div>
+        <div class="service-desc">উঠে যাওয়া দাঁতের স্থায়ী বিকল্প — Implant-এর পর আসল দাঁতের মতো অনুভব।</div>
+      </div>
+      <div class="service-card">
+        <div class="service-img"><img src="https://raw.githubusercontent.com/marufhossenofficial/dental/refs/heads/main/ChatGPT%20Image%20May%203%2C%202026%2C%2009_29_38%20AM.png" alt="Shining smile with braces"></div>
+        <span class="service-badge badge-pink">Braces</span>
+        <div class="service-name">Braces / Orthodontics</div>
+        <div class="service-desc">বাঁকা দাঁত সোজা করা। Metal ও Clear Braces উভয় পাওয়া যায়। সবার জন্য।</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="#appt" class="btn btn-blue btn-lg">এখনই অ্যাপয়েন্টমেন্ট নিন →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-label">মূল্য তালিকা</div>
+    <h2 class="section-title">পরিষ্কার দাম, কোনো চমক নেই</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>চিকিৎসা</th>
+          <th>বিজরিত</th>
+          <th>শুরুর দাম (টাকা)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>পরামর্শ (Consultation)</strong></td>
+          <td>X-Ray সহ</td>
+          <td><span class="free-tag">বিনামূল্যে</span></td>
+        </tr>
+        <tr>
+          <td><strong>Filling</strong></td>
+          <td>Tooth-colored</td>
+          <td><span class="price-range">৳৮০০ – ১,৮০০</span></td>
+        </tr>
+        <tr>
+          <td><strong>Scaling / Teeth Cleaning</strong></td>
+          <td>সম্পূর্ণ মুখ</td>
+          <td><span class="price-range">৳৮০০ – ১,৫০০</span></td>
+        </tr>
+        <tr>
+          <td><strong>Root Canal Treatment</strong></td>
+          <td>Cap / Crown সহ</td>
+          <td><span class="price-range">৳৬,৫০০ – ৮,০০০</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tooth Extraction</strong></td>
+          <td>সাধারণ ও জটিল</td>
+          <td><span class="price-range">৳৬০০ – ২,৫০০</span></td>
+        </tr>
+        <tr>
+          <td><strong>Braces (Metal)</strong></td>
+          <td>সম্পূর্ণ কোর্স</td>
+          <td><span class="price-range">৳২৫,০০০ – ৮৫,০০০</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dental Implant</strong></td>
+          <td>Crown সহ</td>
+          <td><span class="price-range">৳৮০,০০০ – ৯০,০০০</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="price-note">
+      🔒 <strong>কোনো লুকানো চার্জ নেই।</strong> চিকিৎসা শুরুর আগেই পুরো মূল্য জানানো হবে। এটা আমাদের প্রতিশ্রুতি।
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE AFTER -->
+<section class="results-section" id="results">
+  <div class="container">
+    <div class="section-label">রোগীর পরিবর্তন</div>
+    <h2 class="section-title">চিকিৎসার আগে ও পরে</h2>
+    <div class="ba-grid">
+      <!-- Case 1 -->
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-before">
+            <img src="https://i.imgur.com/FKTlFVc.png" alt="Before">
+            <span class="ba-label label-before">আগে</span>
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://i.imgur.com/CntjwTf.png" alt="After">
+            <span class="ba-label label-after">পরে</span>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">৩ মাসের তীব্র ব্যথা → সম্পূর্ণ আরাম</div>
+          <div class="ba-desc">Root Canal-এর পর দুই সেশনে ব্যথা পুরোপুরি সেরে যায়। এখন স্বাভাবিকভাবে খেতে পারছেন।</div>
+        </div>
+      </div>
+      <!-- Case 2 -->
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-before">
+            <img src="https://i.imgur.com/FqJRqow.png" alt="Before">
+            <span class="ba-label label-before">আগে</span>
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://i.imgur.com/6Ldpr8F.png" alt="After">
+            <span class="ba-label label-after">পরে</span>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">কালো দাঁত → উজ্জ্বল হাসি</div>
+          <div class="ba-desc">Scaling ও Whitening-এর পর সম্পূর্ণ নতুন আত্মবিশ্বাস নিয়ে ফিরেছেন।</div>
+        </div>
+      </div>
+      <!-- Case 3 -->
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-before">
+            <img src="https://i.imgur.com/9OINBSN.png" alt="Before">
+            <span class="ba-label label-before">আগে</span>
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://i.imgur.com/IF5elhp.png" alt="After">
+            <span class="ba-label label-after">পরে</span>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">খালি জায়গা → স্থায়ী Implant</div>
+          <div class="ba-desc">৩টি দাঁত ছিল না — এখন স্বাভাবিকভাবে খেতে পারছেন।</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="reviews">
+  <div class="container">
+    <div class="section-label">রোগীদের কথা</div>
+    <h2 class="section-title">আমাদের রোগীরা যা বলেন</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">আমি Root Canal করতে অনেক ভয় পেতাম। কিন্তু ডা. রাফিউল সাহেব এত সহজ করে দিলেন যে বুঝতেই পারিনি। কোনো ব্যথা নেই!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">র</div>
+          <div>
+            <div class="author-name">রহিমা বেগম</div>
+            <div class="author-loc">গৃহিণী, মিরপুর</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">রাত ৮টায় হঠাৎ দাঁতের ব্যথা শুরু হয়। WhatsApp করতে সাথে সাথে জবাব দিলেন। পরিষ্কার মূল্য আগেই জানালেন।</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">ক</div>
+          <div>
+            <div class="author-name">করিম সাহেব</div>
+            <div class="author-loc">ব্যবসায়ী, গাজীপুর</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">আমার মেয়ের Braces লাগানো হয়েছে। ডাক্তার প্রতিটি ধাপ এত সুন্দর করে বুঝিয়ে দিলেন। এই ক্লিনিক সত্যিই বিশ্বস্ত।</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">না</div>
+          <div>
+            <div class="author-name">নাসরিন আক্তার</div>
+            <div class="author-loc">শিক্ষিকা, নারায়ণগঞ্জ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Implant করাতে অনেক ভয় ছিল। কিন্তু এখন মনে হচ্ছে আসল দাঁত। দাম একটু বেশি হলেও একদম worth it।</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">সা</div>
+          <div>
+            <div class="author-name">সাইফুল ইসলাম</div>
+            <div class="author-loc">ইঞ্জিনিয়ার, টঙ্গী</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-grid">
+      <div class="final-cta-content">
+        <h2>আজকের ব্যথাটা আর কাল পর্যন্ত নিয়ে যাবেন না</h2>
+        <p>প্রতিদিন ১৫ জন নতুন রোগী — সিট সীমিত। আজই অ্যাপয়েন্টমেন্ট নিশ্চিত করুন। প্রথম পরামর্শ সম্পূর্ণ বিনামূল্যে।</p>
+        <div class="cta-btns">
+          <a href="tel:01713123456" class="btn btn-white btn-lg">📞 এখনই ফোন করুন<br>01713-123456</a>
+          <a href="#" class="btn btn-green btn-lg">💬 WhatsApp করুন<br>২ মিনিটে আপয়েন্টমেন্ট</a>
+        </div>
+        <div class="cta-checks">
+          <div class="cta-check">✓ প্রথম পরামর্শ বিনামূল্যে</div>
+          <div class="cta-check">✓ আজই সূট পাবেন</div>
+          <div class="cta-check">✓ পেইনলেস চিকিৎসা</div>
+          <div class="cta-check">✓ পরিষ্কার মূল্য</div>
+        </div>
+      </div>
+      <div class="final-cta-img">
+        <img src="https://i.imgur.com/oCFgg23.png" alt="স্মাইল ডেন্টাল কেয়ার পরিবার" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="font-size:28px;">🦷</div>
+          <div>
+            <div class="name">স্মাইল ডেন্টাল কেয়ার</div>
+            <div class="tagline">আপনার হাসি, আমাদের দায়িত্ব</div>
+          </div>
+        </div>
+        <p>আধুনিক সুবিধা ও অভিজ্ঞ ডাক্তারের সমন্বয়ে আমরা আপনাকে সেরা দাঁতের সেবা দিতে প্রতিশ্রুতিবদ্ধ। প্রতিটি রোগীর জন্য ব্যক্তিগত যত্ন ও সম্মান।</p>
+      </div>
+      <div class="footer-section">
+        <h4>ফাস্ট লিংক</h4>
+        <ul class="footer-links">
+          <li><a href="#">হোম</a></li>
+          <li><a href="#services">আমাদের সেবা</a></li>
+          <li><a href="#pricing">মূল্য তালিকা</a></li>
+          <li><a href="#results">রোগীর পরিবর্তন</a></li>
+          <li><a href="#reviews">রিভিউ</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>আমাদের ঠিকানা</h4>
+        <ul class="footer-links">
+          <li><a href="#">📍 মিরপুর, ঢাকা</a></li>
+          <li><a href="#">📍 গাজীপুর শহর</a></li>
+          <li><a href="#">📍 নারায়ণগঞ্জ</a></li>
+          <li><a href="#">🕐 সকাল ৯টা – রাত ৯টা</a></li>
+          <li><a href="#">🔴 জরুরি সেবা ২৪/৭</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>যোগাযোগ করুন</h4>
+        <div class="footer-contact">
+          <div class="footer-contact-item">📞 <a href="tel:01713123456" style="color:#9bc3ff;text-decoration:none;">01713-123456</a></div>
+          <div class="footer-contact-item">📞 <a href="tel:01713123456" style="color:#9bc3ff;text-decoration:none;">01713-123456</a></div>
+          <div class="footer-contact-item">✉️ <a href="mailto:smiledentalcare@gmail.com" style="color:#9bc3ff;text-decoration:none;">smiledentalcare@gmail.com</a></div>
+          <div class="footer-contact-item">🌐 <a href="#" style="color:#9bc3ff;text-decoration:none;">www.smiledentalcare.com</a></div>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>আমাদের অনুসরণ করুন</h4>
+        <div class="social-links" style="flex-wrap:wrap;margin-bottom:16px;">
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">▶</a>
+          <a href="#" class="social-link">📷</a>
+          <a href="#" class="social-link">💬</a>
+        </div>
+        <div style="font-size:0.8rem;color:#9bc3ff;line-height:1.7;">
+          <strong>BDS & BCDS নিবন্ধিত</strong><br>
+          বাংলাদেশ ডেন্টাল<br>কাউন্সিল অনুমোদিত
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© ২০২৪ স্মাইল ডেন্টাল কেয়ার। সর্বস্বত্ব সংরক্ষিত।</span>
+      <span>BDS & BCDS নিবন্ধিত ক্লিনিক</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href !== '#') {
+        const target = document.querySelector(href);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+
+  // Animate on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.style.opacity = 1; 
+        e.target.style.transform = 'translateY(0)'; 
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.service-card, .ba-card, .testimonial-card, .clinic-card').forEach(el => {
+    el.style.opacity = 0; 
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity .4s ease, transform .4s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
